@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.mrtvrgn.characterviewer"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+
+    flavorDimensions "config"
+
+    productFlavors {
+        simsons {
+            applicationId "com.xfinity.simpsonsviewer"
+            resValue "string", "character_type", "simpsons+characters"
+            resValue "string", "app_name", "Simpsons Character Viewer"
+            dimension "config"
+        }
+        thewire {
+            applicationId "com.xfinity.wireviewer"
+            resValue "string", "character_type", "the+wire+characters"
+            resValue "string", "app_name", " The Wire Character Viewer"
+            dimension "config"
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Support
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "com.android.support:recyclerview-v7:$supportLibVersion"
+    implementation "com.android.support:cardview-v7:$supportLibVersion"
+    implementation "com.android.support:support-v4:$supportLibVersion"
+    implementation "com.android.support:design:$supportLibVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    //Media
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+
+    //Network
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+}
