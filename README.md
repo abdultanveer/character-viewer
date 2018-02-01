@@ -2,7 +2,8 @@
 
 ##### A sample project of consuming network and image libraries, MVP architeture, listing and maintaining data.
 
-###### For image loading, Glide library provides a powerful usage and by using Kotlin extensions, we can make the usage as a single line
+#### Image Loading
+- Glide library provides a powerful usage and by using Kotlin extensions, we can make the usage as a single line
 
 ```kotlin
 //Extensions.kt
@@ -18,7 +19,8 @@ fun ImageView.loadImage(context: Context, url: String, @DrawableRes placeHolder:
 icon.loadImage(context, url, drawable_placeholder)
 ```
 
-###### For networking, Retrofit library is one of the most known. By using Kotlin higher order functions, it is easy to consume the network response as such below
+#### Network
+-  Retrofit library is one of the most known. By using Kotlin higher order functions, it is easy to consume the network response as such below
 
 ```kotlin
         WebServices.request(URL),
@@ -27,14 +29,15 @@ icon.loadImage(context, url, drawable_placeholder)
 ```
 
 
-###### There are several ways of detecting device type such tablet or phone. One way is creating a layout file that has same name but under sw600dp. This allows to interchange between these layouts through different type of devices.
-###### By using the same idea we can also create two same named value resources but one will be under values-sw600dp folder. In this project I used both for different purposes. 
+#### Gradle & Resources
+- There are several ways of detecting device type such tablet or phone. One way is creating a layout file that has same name but under sw600dp. This allows to interchange between these layouts through different type of devices.
+- By using the same idea we can also create two same named value resources but one will be under values-sw600dp folder. In this project I used both for different purposes. 
 ```xml
 <!-- values-sw600dp/device.xml -->
  <bool name="is_tablet">true</bool>
  ```
  
- ###### There are 2 application flavors are provided. While they both serving for same purpose with different data, we can easily change between them and detect each's query parameter by requesting 'character_type' string resource.
+- There are 2 application flavors are provided. While they both serving for same purpose with different data, we can easily change between them and detect each's query parameter by requesting 'character_type' string resource.
  ```xml
   productFlavors {
         simsons {
@@ -45,3 +48,10 @@ icon.loadImage(context, url, drawable_placeholder)
         }
     }
 ```
+#### Quicklook Links
+https://github.com/mrtvrgn/character-viewer/blob/master/phone_1.png "Phone Layout 1"
+https://github.com/mrtvrgn/character-viewer/blob/master/phone_2.png "Phone Layout 2"
+https://github.com/mrtvrgn/character-viewer/blob/master/tablet_1.png "Tablet Layout 1"
+
+
+
