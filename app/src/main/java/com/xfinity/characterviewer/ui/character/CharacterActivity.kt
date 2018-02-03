@@ -1,7 +1,6 @@
 package com.xfinity.characterviewer.ui.character
 
 import android.view.MenuItem
-import com.xfinity.characterviewer.App
 import com.xfinity.characterviewer.R
 import com.xfinity.characterviewer.architecture.BaseMvpActivity
 import com.xfinity.characterviewer.ui.character.list.CharacterListFragment
@@ -19,13 +18,11 @@ class CharacterActivity : BaseMvpActivity<CharacterView, CharacterPresenter>(), 
 
     //Init
     override fun findViews() {
-        if (!App.appInstance.isTablet) {
 
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, CharacterListFragment(), "list")
-                    .addToBackStack("list")
-                    .commit()
-        }
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.container, CharacterListFragment(), getString(R.string.tag_list_fragment))
+                .addToBackStack(getString(R.string.tag_list_fragment))
+                .commit()
     }
 
     //Inflate menu
@@ -38,8 +35,7 @@ class CharacterActivity : BaseMvpActivity<CharacterView, CharacterPresenter>(), 
             }
             R.id.action_switch -> {
 
-                with(supportFragmentManager.findFragmentById(R.id.fragment_list)
-                        ?: supportFragmentManager.findFragmentByTag("list")) {
+                with(supportFragmentManager.findFragmentByTag(getString(R.string.tag_list_fragment))) {
                     (this as CharacterListFragment).regulateGridManager(false)
                 }
             }

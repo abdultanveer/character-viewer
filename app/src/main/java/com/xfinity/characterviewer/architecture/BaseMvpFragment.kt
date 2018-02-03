@@ -31,9 +31,4 @@ abstract class BaseMvpFragment<in V : BaseMvpView, T : IBaseMvpPresenter<V>> : F
         activity?.actionBar?.title = title
     }
 
-    protected fun onPresenterRestored() {}
-
-    protected fun retainPresenter(): Boolean {
-        return true
-    }
 }

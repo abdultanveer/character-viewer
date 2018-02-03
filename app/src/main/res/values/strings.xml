@@ -5,5 +5,7 @@
     <string name="search">Search</string>
     <string name="favorite">favorite</string>
 
+    <string name="tag_list_fragment">list_fragment</string>
+
     <string name="character_title_transition_name">characterTitle</string>
 </resources>
