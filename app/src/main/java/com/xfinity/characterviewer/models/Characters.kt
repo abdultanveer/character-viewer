@@ -7,12 +7,14 @@ import java.io.Serializable
  */
 
 data class Characters(
-        val RelatedTopics: List<Character>
-)
+        private val RelatedTopics: List<Character>
+) {
+    fun getCharacters() = RelatedTopics
+}
 
 data class Character(
         val Result: String,
-        private val Text: String,
+        val Text: String,
         val Icon: Icon,
         var isFavorite: Boolean = false
 ) : Serializable {

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF3E0"
-    tools:context="com.xfinity.characterviewer.activities.DetailsActivity">
+    android:background="#FFF3E0">
 
     <ImageView
         android:id="@+id/icon"
@@ -27,6 +26,7 @@
         android:textColor="#212121"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:transitionName="@string/character_title_transition_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/icon"
         app:layout_constraintTop_toTopOf="parent"

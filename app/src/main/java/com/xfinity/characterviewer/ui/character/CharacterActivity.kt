@@ -4,17 +4,13 @@ import android.view.MenuItem
 import com.xfinity.characterviewer.App
 import com.xfinity.characterviewer.R
 import com.xfinity.characterviewer.architecture.BaseMvpActivity
-import com.xfinity.characterviewer.models.Character
-import com.xfinity.characterviewer.replace
-import com.xfinity.characterviewer.ui.character.detail.CharacterDetailFragment
 import com.xfinity.characterviewer.ui.character.list.CharacterListFragment
 
 /**
  * Created by Mert Vurgun on 1/31/2018.
  */
 
-class CharacterActivity : BaseMvpActivity<CharacterView, CharacterPresenter>(), CharacterView,
-        CharacterListFragment.OnCharacterSelectedListener {
+class CharacterActivity : BaseMvpActivity<CharacterView, CharacterPresenter>(), CharacterView {
 
     override var mPresenter: CharacterPresenter = CharacterPresenter()
 
@@ -23,26 +19,17 @@ class CharacterActivity : BaseMvpActivity<CharacterView, CharacterPresenter>(), 
 
     //Init
     override fun findViews() {
-        if (!App.appInstance.isTablet) supportFragmentManager
-                .replace(R.id.container, CharacterListFragment(), "list", false)
+        if (!App.appInstance.isTablet) {
+
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, CharacterListFragment(), "list")
+                    .addToBackStack("list")
+                    .commit()
+        }
     }
 
     //Inflate menu
     override fun getMenu(): Int = R.menu.menu
-
-    //List fragment communication
-    override fun onCharacterSelected(character: Character) {
-
-        if (App.appInstance.isTablet) {
-            supportFragmentManager.findFragmentById(R.id.fragment_details)?.let {
-                (it as CharacterDetailFragment).updateCharacter(character)
-            }
-        } else {
-            with(CharacterDetailFragment(character)) {
-                supportFragmentManager.replace(R.id.container, this, "details")
-            }
-        }
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -50,10 +37,10 @@ class CharacterActivity : BaseMvpActivity<CharacterView, CharacterPresenter>(), 
                 showError("Search")
             }
             R.id.action_switch -> {
-                //Find list fragment based on device
-                (if (App.appInstance.isTablet) supportFragmentManager.findFragmentById(R.id.fragment_list)
-                else supportFragmentManager.findFragmentByTag("list"))?.let {
-                    (it as CharacterListFragment).switchLayout()
+
+                with(supportFragmentManager.findFragmentById(R.id.fragment_list)
+                        ?: supportFragmentManager.findFragmentByTag("list")) {
+                    (this as CharacterListFragment).regulateGridManager(false)
                 }
             }
         }
